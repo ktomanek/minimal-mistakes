@@ -2,9 +2,8 @@
 
 title:            Katrin Tomanek
 locale:           en_US
-#url: "file:///home_mnt/home/tomanek/Dev/website/minimal-mistakes/_site"
-# url: "http://mmistakes.github.io/minimal-mistakes"
-url: "https://ktomanek.github.io"
+url: "file:///home_mnt/home/tomanek/Dev/website/minimal-mistakes/_site"
+#url: "https://ktomanek.github.io"
 
 # Jekyll configuration
 
@@ -30,7 +29,7 @@ owner:
   name: Katrin Tomanek
   web: http://ktomanek.github.io
   avatar: katrin.jpg
-  bio: "Data Scientist and Research Engineer"
+  bio: "Data Scientist, Research Engineer"
   email: 
   github: ktomanek
   linkedin: ktomanek

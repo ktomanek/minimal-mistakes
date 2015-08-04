@@ -4,10 +4,11 @@
   url: /about/
 
 - title: Publications
-  url: /posts/
+  url: /publications/
 
 - title: Resources
   url: /resources/
 
 - title: Blog
-  url: http://mademistakes.com
+  url: /posts/
+#  url: http://pacificsgreat.tumbl.com
