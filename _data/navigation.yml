@@ -1,6 +1,6 @@
 # Site navigation links
 
-- title: me
+- title: About
   url: /about/
 
 - title: Publications
@@ -10,5 +10,5 @@
   url: /resources/
 
 - title: Blog
-  url: /posts/
-#  url: http://pacificsgreat.tumbl.com
+#  url: /posts/
+  url: http://pacificsgreat.tumbl.com
