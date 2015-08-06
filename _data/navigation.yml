@@ -4,7 +4,8 @@
   url: /about/
 
 - title: CV
-  url: http://pacificsgreat.tumblr.com/
+  url: ({{ site.url }}/downloads/cv_katrintomanek.pdf)
+
 
 - title: Publications
   url: /publications/
