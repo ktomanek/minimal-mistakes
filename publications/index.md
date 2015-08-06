@@ -13,4 +13,8 @@ image:
 see google scholar: <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">gs</a>
 
 
-{{ site.baseurl }}/downloads/cv_katrintomanek.pdf
+<a href="{{ site.baseurl }}/downloads/cv_katrintomanek.pdf>CV</a>
+
+<a href="{{ site.url }}/downloads/cv_katrintomanek.pdf>CV2</a>
+
+[get the PDF]({{ site.url }}/downloads/cv_katrintomanek.pdf) 
