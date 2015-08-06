@@ -4,7 +4,7 @@
   url: /about/
 
 - title: CV
-  url: ({{ site.url }}/downloads/cv_katrintomanek.pdf)
+  url: /cv/
 
 
 - title: Publications
