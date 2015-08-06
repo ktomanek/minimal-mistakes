@@ -6,8 +6,6 @@ share: false
 #excerpt: "Instructions on how to install and customize the Jekyll theme Minimal Mistakes."
 image:
   feature: erde2.jpg
-#  credit: WeGraphics
-#  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
 {% include _toc.html %}
