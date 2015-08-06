@@ -8,11 +8,5 @@ image:
   feature: redrocks.png
 ---
 
-{% include _toc.html %}
 
-see <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">google scholar</a>
-
-
-
-
-#[download CV as PDF]({{ site.url }}/downloads/cv_katrintomanek.pdf) 
+[download PDF]({{ site.url }}/downloads/cv_katrintomanek.pdf) 
