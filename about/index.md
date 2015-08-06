@@ -16,7 +16,7 @@ image:
 * process natural language (aka NLP)
 * make machines learn (aka ML)
 * analyse social media
-* explore and adventure the world
+* explore and adventure the world and take pictures thereof
 * climb rocks whenever possible
 
 
