@@ -11,3 +11,6 @@ image:
 {% include _toc.html %}
 
 see google scholar: <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">gs</a>
+
+
+{{ site.baseurl }}/downloads/cv_katrintomanek.pdf
