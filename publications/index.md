@@ -9,7 +9,6 @@ image:
 #[get the PDF]({{ site.url }}/downloads/cv_katrintomanek.pdf) 
 ---
 
-#{% include _toc.html %}
 
 
 See my publications on <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">google scholar</a>.
