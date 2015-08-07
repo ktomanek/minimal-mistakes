@@ -9,9 +9,14 @@ image:
 #[get the PDF]({{ site.url }}/downloads/cv_katrintomanek.pdf) 
 ---
 
-{% include _toc.html %}
+#{% include _toc.html %}
 
-see <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">google scholar</a>
+
+See my publications on <a href="https://scholar.google.com/citations?user=Yap6bbUAAAAJ&hl=en">google scholar</a>.
+
+Here are two recent talks I gave on NLP problems I have been working on at VigLink:
+1) Overview NLP tasks in VigLink's Link Insertion product, <a href="https://www.youtube.com/watch?v=UyAZychO_KQ">presented at the first SF Text MeetUp in February, 2015</a>
+2) Deep dive into information extraction from offer feeds, <a href="https://www.youtube.com/watch?v=rszM3T16Unc">presented at the Text-By-The-Bay conference in April 2015</a>
 
 
 
