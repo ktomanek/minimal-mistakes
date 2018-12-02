@@ -2,7 +2,7 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>GenderflowX</p> 
+<p id ='out'>GenderflowXX</p> 
 
   <p>User Image Upload</p>
   <input type="file" onchange="previewFile()"><br>
@@ -20,7 +20,8 @@
   
   
   <p>Result</p>
-  <div id="myResult"></div>                                 
+  <div id="myResultLabel"></div>                                 
+  <div id="myResultConf"></div>                                 
                     
 <script>
 function previewFile(){
@@ -59,8 +60,18 @@ async function onCanvas() {
  var pred = model.predict(example);
  // var result = pred.as1D().argMax();
  var result = pred
+ 
+ // decision
+ var conf = pred.asScalar()
+ var label = 'x'
+ if (conf > 0.5) {
+    label='m'
+} else {
+    label='f'
+}
                                             
- document.getElementById("myResult").innerHTML = result.toString();
+ document.getElementById("myResultLabel").innerHTML = label.toString();
+  document.getElementById("myResultConf").innerHTML = conf.toString();
 }
 </script>
 </body>
