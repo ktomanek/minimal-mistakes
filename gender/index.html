@@ -1,8 +1,7 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
-<!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>Genderflow//</p> 
+<p style="color:cyan">//Genderflow//</p> 
 
   <p>Step 1: Upload image...</p>
   <input type="file" onchange="selectImage()"><br>  
@@ -43,9 +42,9 @@ function norm(v) {
 }
   
 async function classifyImage() {
- document.getElementById("myResultLabel").innerHTML = "classsifying image"; 
- document.getElementById("myResultConf").innerHTML = "..."; 
- document.getElementById("myResultPred").innerHTML = "..."; 
+ document.getElementById("myResultLabel").innerHTML = "thinking..."; 
+ document.getElementById("myResultConf").innerHTML = ""; 
+ document.getElementById("myResultPred").innerHTML = ""; 
  var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')      
  tf.tidy(() => {
    
@@ -69,7 +68,7 @@ async function classifyImage() {
   }
                                             
   document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
-  document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(4);
+  document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
   document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
  });
  model.dispose();
@@ -78,27 +77,3 @@ async function classifyImage() {
   
 </script>
 </body>
-
-<!--
-async function classifyImage() {
- document.getElementById("myResultLabel").innerHTML = "you pressed the button"; 
- document.getElementById("myResultConf").innerHTML = "...processing..."; 
- var img = document.getElementById("myImage");  
- // var model = await tf.loadModel('web_model_gender/model.json')
- var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')
- var example =tf.fromPixels(img);
- example = tf.image.resizeBilinear(example, [150, 150]);
- example = example.reshape([1, 150, 150, 3]);  
-  
- var pred = model.predict(example);
- var result = pred
- 
- // decision
- var conf = pred.dataSync()
- var label = 'x'
- if (conf > 0.5) {
-    label='MALE'
-} else {
-    label='FEMALE'
-}
--->
