@@ -9,7 +9,7 @@
   <img id="myImage" src="mnist_number.jpg" alt="an image here" width="28" height="28">
   
   <p>Canvas</p>
-  <canvas id="myCanvas" with="150 height="150" style="border:1px solid #000000;">not supported</canvas>                                                                      
+  <canvas id="myCanvas" with="300" height="300" style="border:1px solid #000000;">not supported</canvas>                                                                      
 
   <p><button onclick="onCanvas()">Click here...x</button></p>
 
@@ -24,9 +24,15 @@ function onCanvas() {
  var img = new Image();
  img.src = "doggie.jpg";  
  // TODO run the classifier and show result
-
  ctx.drawImage(img,10,10);
- document.getElementById("myResult").innerHTML = "here will be the prediction";
+ var mobilenet =  await tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+ var example =tf.fromPixels(img);
+ example = tf.image.resizeBilinear(example, [224,224]);
+ example = example.reshape([1,224,224,3]);  
+ var pred = mobilenet.predict(example);
+ var result = pred.as1D().argMax();
+                                            
+ document.getElementById("myResult").innerHTML = result.toString();
 }
 </script>
 </body>
