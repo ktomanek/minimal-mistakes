@@ -1,14 +1,60 @@
-<head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"> </script>
-<script>
-          async function loadModel(){ 
-              model = await tf.loadModel('web_model_mnist_keras/model.json') 
-              y = model.predict(tf.zeros([1,2])) 
-              document.getElementById('out').innerHTML = y.dataSync()[0] 
-          } 
-          loadModel() 
-</script>
+<head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+<!--<script src="gender.js"></script> -->
 </head> 
 <body>
-hi...
-        <p id ='out'>hello world</p> 
+<p id ='out'>Genderflow</p> 
+
+  <p>Step 1: Upload your image...</p>
+  <input type="file" onchange="selectImage()"><br>  
+  <img id="myImage" src="" alt="an image to come here" width="200" height="200">
+
+  <p>Step 2: Classify...</p>
+  <button onclick="classifyImage()">Click here to classify</button></p>
+
+  <p>Step 3: Result...</p>
+  <div id="myResultLabel"></div>                                 
+  <div id="myResultConf"></div>                                 
+                    
+<script>
+          
+function selectImage(){
+       var preview = document.querySelector('img'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  }
+  
+// TODO: tf.tidy... currently horrible memory management          
+async function classifyImage() {
+ document.getElementById("myResultLabel").innerHTML = "you pressed the button"; 
+ document.getElementById("myResultConf").innerHTML = "...processing..."; 
+ var img = document.getElementById("myImage");  
+ var model = await tf.loadModel('web_model_gender/model.json')
+ var example =tf.fromPixels(img);
+ example = tf.image.resizeBilinear(example, [150, 150]);
+ example = example.reshape([1, 150, 150, 3]);  
+  
+ var pred = model.predict(example);
+ var result = pred
+ 
+ // decision
+ var conf = pred.dataSync()
+ var label = 'x'
+ if (conf > 0.5) {
+    label='MALE'
+} else {
+    label='FEMALE'
+}
+                                            
+ document.getElementById("myResultLabel").innerHTML = label.toString();
+ document.getElementById("myResultConf").innerHTML = parseFloat(conf).toFixed(4).toString();
+}
+</script>
 </body>
