@@ -2,7 +2,7 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>GenderflowX</p> 
+<p id ='out'>Genderflow</p> 
 
   <p>Step 1: Upload your image...</p>
   <input type="file" onchange="selectImage()"><br>  
@@ -43,7 +43,8 @@ async function classifyImage() {
    var img = document.getElementById("myImage");  
    var example =tf.fromPixels(img);
    example = tf.image.resizeBilinear(example, [150, 150]);
-   example = example.reshape([1, 150, 150, 3]);  
+   example = example.reshape([1, 150, 150, 3]); 
+   // TODO rescale /255
   
    var pred = model.predict(example);
  
@@ -59,6 +60,7 @@ async function classifyImage() {
   document.getElementById("myResultLabel").innerHTML = label.toString();
   document.getElementById("myResultConf").innerHTML = parseFloat(conf).toFixed(4).toString();
  });
+ model.dispose();
 }
   
   
