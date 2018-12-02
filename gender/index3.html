@@ -47,7 +47,7 @@ async function onCanvas() {
  // var img = new Image();
  // img.src = "doggie.jpg";  
  // ctx.drawImage(img,10,10);
- // var mobilenet =  await tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
+ // var model =  await tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
  var model = await tf.loadModel('web_model_gender/model.json')
  document.getElementById("myResult").innerHTML = "loaded the model"; 
  var example =tf.fromPixels(img);
@@ -56,7 +56,7 @@ async function onCanvas() {
  example = tf.image.resizeBilinear(example, [150, 150]);
  example = example.reshape([1, 150, 150, 3]);  
   
- var pred = mobilenet.predict(example);
+ var pred = model.predict(example);
  var result = pred.as1D().argMax();
                                             
  document.getElementById("myResult").innerHTML = result.toString();
