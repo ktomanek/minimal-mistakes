@@ -13,6 +13,9 @@
 
   <p><button onclick="onCanvas()">Click here...</button></p>
 
+  <p>Result</p>
+  <div id="myResult"></div>                                 
+                    
 <script>
 function onCanvas() {
  var c = document.getElementById("myCanvas");
@@ -22,6 +25,7 @@ function onCanvas() {
  //img.src = "mnist_number.jpg";  
 
  ctx.drawImage(img,10,10);
+ document.getElementById("myResult").innerHTML = "here will be the prediction";
 }
 </script>
 </body>
