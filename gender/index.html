@@ -2,7 +2,7 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>Genderflow X</p> 
+<p id ='out'>Genderflow</p> 
 
   <p>Step 1: Upload your image...</p>
   <input type="file" onchange="selectImage()"><br>  
@@ -13,7 +13,8 @@
 
   <p>Step 3: Result...</p>
   <div id="myResultLabel"></div>                                 
-  <div id="myResultConf"></div>                                 
+  <div id="myResultConf"></div>
+  <div id="myResultPred"></div>    
                     
 <script>
 
@@ -32,7 +33,15 @@ function selectImage(){
   }
   
 
-// TODO: tf.tidy... currently horrible memory management          
+// normalize into some sort of confidence for given class
+function norm(v) {
+    if (v>0.5) {
+        return (v-0.5) / (1.0 - 0.5)
+    } else {
+        return (v-0) / (0.5 - 0)
+    }
+}
+  
 async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "you pressed the button"; 
  document.getElementById("myResultConf").innerHTML = "...processing..."; 
@@ -50,9 +59,9 @@ async function classifyImage() {
    var pred = model.predict(example);
  
    // decision
-   var conf = pred.dataSync()
+   var conf = norm(pred.dataSync())
    var label = 'x'
-   if (conf > 0.5) {
+   if (pred.dataSync() > 0.5) {
       label='MALE'
   } else {
       label='FEMALE'
@@ -60,6 +69,7 @@ async function classifyImage() {
                                             
   document.getElementById("myResultLabel").innerHTML = label.toString();
   document.getElementById("myResultConf").innerHTML = parseFloat(conf).toFixed(4).toString();
+  document.getElementById("myResultPred").innerHTML = parseFloat(pred.dataSync()).toFixed(4).toString();
  });
  model.dispose();
 }
