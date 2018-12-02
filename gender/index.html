@@ -2,7 +2,7 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>Genderflow X</p> 
+<p id ='out'>Genderflow</p> 
 
   <p>Step 1: Upload your image...</p>
   <input type="file" onchange="selectImage()"><br>  
@@ -16,8 +16,6 @@
   <div id="myResultConf"></div>                                 
                     
 <script>
-
-var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')
 
 function selectImage(){
        var preview = document.querySelector('img'); //selects the query named img
