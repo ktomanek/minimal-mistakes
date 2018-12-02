@@ -2,7 +2,7 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>Genderflow</p> 
+<p id ='out'>GenderflowX</p> 
 
   <p>Step 1: Upload your image...</p>
   <input type="file" onchange="selectImage()"><br>  
@@ -36,9 +36,9 @@ function selectImage(){
 async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "you pressed the button"; 
  document.getElementById("myResultConf").innerHTML = "...processing..."; 
-  
+ var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')      
  tf.tidy(() => {
-   var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')     
+   
    
    var img = document.getElementById("myImage");  
    var example =tf.fromPixels(img);
