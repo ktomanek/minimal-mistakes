@@ -5,7 +5,8 @@
 <p id ='out'>hello world, genderflow latest</p> 
 
   <p> Image</p>
-  <img id="myImage" src="0029aa165d7911e3863312af00698892_5.jpg_icon.png" alt="an image here" width="150" height="150">
+  <!--0029aa165d7911e3863312af00698892_5.jpg_icon.png-->
+  <img id="myImage" src="mnist_number.jpg" alt="an image here" width="28" height="28">
   
   <p>Canvas</p>
   <canvas id="myCanvas" with="150 height="150" style="border:1px solid #000000;">not supported</canvas>                                                                      
@@ -18,7 +19,7 @@ function onCanvas() {
  var ctx = c.getContext("2d");
  var img = document.getElementById("myImage");
  //var img = new Image();
- //img.src = "0029aa165d7911e3863312af00698892_5.jpg_icon.png";  
+ //img.src = "mnist_number.jpg";  
 
  ctx.drawImage(img,30,30);
 }
