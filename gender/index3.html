@@ -42,6 +42,7 @@ function previewFile(){
   
 async function onCanvas() {
  document.getElementById("myResultLabel").innerHTML = "you pressed the button"; 
+ document.getElementById("myResultConf").innerHTML = "...processing..."; 
  var img = document.getElementById("myImage");  
  // var c = document.getElementById("myCanvas");
  // var ctx = c.getContext("2d");
@@ -50,7 +51,6 @@ async function onCanvas() {
  // ctx.drawImage(img,10,10);
  // var model =  await tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
  var model = await tf.loadModel('web_model_gender/model.json')
- document.getElementById("myResultConf").innerHTML = "loaded the model"; 
  var example =tf.fromPixels(img);
  // example = tf.image.resizeBilinear(example, [224,224]);
  // example = example.reshape([1,224,224,3]);  
@@ -62,7 +62,7 @@ async function onCanvas() {
  var result = pred
  
  // decision
- var conf = pred.asScalar()
+ var conf = pred.as1D().asScalar()
  var label = 'x'
  if (conf > 0.5) {
     label='m'
