@@ -2,19 +2,20 @@
 <!--<script src="gender.js"></script> -->
 </head> 
 <body>
-<p id ='out'>hello world, genderflow latest</p> 
+<p id ='out'>Genderflow</p> 
 
-  <p> Image</p>
   <p>User Image Upload</p>
   <input type="file" onchange="previewFile()"><br>
   <!--<img src="" height="200" alt="Image preview...">  -->
   
   <img id="myImage" src="" alt="an image to come here" width="200" height="200">
   
+  <!--
   <p>Canvas</p>
   <canvas id="myCanvas" with="300" height="300" style="border:1px solid #000000;">not supported</canvas>                                                                      
+  -->
 
-  <p><button onclick="onCanvas()">Click here...xx</button></p>
+  <p><button onclick="onCanvas()">Click here to classify</button></p>
 
   
   
@@ -40,13 +41,12 @@ function previewFile(){
   
 async function onCanvas() {
  document.getElementById("myResult").innerHTML = "you pressed the button"; 
- var c = document.getElementById("myCanvas");
- var ctx = c.getContext("2d");
- //var img = document.getElementById("myImage");
- var img = new Image();
- img.src = "doggie.jpg";  
- // TODO run the classifier and show result
- ctx.drawImage(img,10,10);
+ var img = document.getElementById("myImage");  
+ // var c = document.getElementById("myCanvas");
+ // var ctx = c.getContext("2d");
+ // var img = new Image();
+ // img.src = "doggie.jpg";  
+ // ctx.drawImage(img,10,10);
  var mobilenet =  await tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json');
  document.getElementById("myResult").innerHTML = "loaded the model"; 
  var example =tf.fromPixels(img);
