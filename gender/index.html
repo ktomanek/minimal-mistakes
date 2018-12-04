@@ -14,11 +14,11 @@
   </p>
 
   <input type="file" onchange="selectImage()"></p>  
-  <button onclick="classifyImage()">Click here to classify</button></p>
  
   <img id="myImage" src="" alt="an image to come here" width="200" height="200">
 
   <h1><p style="color:purple">>> So then...</p> </h1>
+  <button onclick="classifyImage()">Click here to classify</button></p>
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
   <div id="myResultPred"></div>    
@@ -71,13 +71,13 @@ async function classifyImage() {
    var label = 'x'
    if (pred.dataSync() >= 0.59) {
       label='MALE'
-      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultLabel").innerHTML = label.toString();
       document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
       document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
      
   } else if (pred.dataSync() <= 0.41) {
       label='FEMALE'
-      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultLabel").innerHTML = label.toString();
       document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
       document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
     
