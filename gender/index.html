@@ -5,7 +5,7 @@
 
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
-  <br>
+  </p>
   This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data...
   
   <h1><p style="color:purple"><< Select image</p> </h1>
@@ -13,12 +13,12 @@
   System does not crop automatically -- classification works best when face fills most of the image.<br>
   </p>
 
-  <input type="file" onchange="selectImage()"></p>  
+  <input type="file" onchange="selectImage()"><font size="10">choose file</font></p>  
  
   <img id="myImage" src="" alt="an image to come here" width="400" height="400">
 
   <h1><p style="color:purple">>> So then...</p> </h1>
-  <button onclick="classifyImage()"><font size="12">Click here to classify</font></button></p>
+  <button onclick="classifyImage()"><font size="10">Click here to classify</font></button></p>
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
   <div id="myResultPred"></div>    
