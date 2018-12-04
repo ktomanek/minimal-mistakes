@@ -1,16 +1,18 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </head> 
 <body>
-<p style="color:cyan">//Genderflow//</p> 
+  <h1><p style="color:cyan">//Genderflow//</p> </h1>
 
-  <p>Step 1: Upload image...</p>
+  <h2>Step 1: Upload image...</h2>
+  Select an image with a face, ideally centered and frontal.
+  System does not crop automatically -- classification works best when face fills most of the image.
   <input type="file" onchange="selectImage()"><br>  
   <img id="myImage" src="" alt="an image to come here" width="200" height="200">
 
-  <p>Step 2: Classify...</p>
+  <h2>Step 2: Classify...</h2>
   <button onclick="classifyImage()">Click here to classify</button></p>
 
-  <p>Step 3: Result...</p>
+  <h2>Step 3: Result...</h2>
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
   <div id="myResultPred"></div>    
@@ -61,10 +63,24 @@ async function classifyImage() {
    // decision
    var conf = norm(pred.dataSync())
    var label = 'x'
-   if (pred.dataSync() > 0.5) {
+   if (pred.dataSync() > 0.6) {
       label='MALE'
-  } else {
+      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+     
+  } else if (pred.dataSync() < 0.4) {
       label='FEMALE'
+      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+    
+  } else {
+      label='I have no idea...'
+      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultConf").innerHTML = "";
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+    
   }
                                             
   document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
