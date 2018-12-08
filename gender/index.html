@@ -1,7 +1,7 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 4//</p> </h1>
+  <h1><p style="color:purple">// Genderflow 5//</p> </h1>
 
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
@@ -21,7 +21,10 @@
   <button onclick="classifyImage()">Click here to classify</button></p>
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
-  <div id="myResultPred"></div>    
+  <div id="myResultPred"></div>   
+  </p>
+  <div id="myResultDetails"></div>   
+
                     
 <script>
 
@@ -65,6 +68,8 @@ async function classifyImage() {
    example = example.toFloat().div(tf.scalar(255));
    example = example.reshape([1, 150, 150, 3]); 
    example.print()
+   document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
+   console.log(example)
   
    var pred = model.predict(example);
  
