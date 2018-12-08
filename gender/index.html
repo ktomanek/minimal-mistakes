@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop 1//</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop 2//</p> </h1>
 
   
   
@@ -25,7 +25,7 @@
   <input type="file" onchange="selectImage()"></p>  
  
   
-  <img id="myImage" src="" alt="an image to come here" width="150" height="150">
+  <img id="myImage" src="woman.jpg" alt="an image to come here" width="150" height="150">
 
   <h1><p style="color:purple">>> So then...</p> </h1>
   <button onclick="classifyImage()">Click here to classify</button></p>
@@ -81,7 +81,7 @@ async function classifyImage() {
    
    
    var croppedImagaData = cropper.result('canvas')   
-   Image img = new Image();
+   var img = new Image();
    img.src = croppedImagaData;
    
    // var img = document.getElementById("myImage"); 
