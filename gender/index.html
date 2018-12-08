@@ -1,7 +1,7 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 9//</p> </h1>
+  <h1><p style="color:purple">// Genderflow 10//</p> </h1>
 
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
@@ -52,6 +52,25 @@ function norm(v) {
     }
 }
   
+// crop image to square
+// https://thekevinscott.com/image-classification-with-javascript/
+function cropImage(img) {
+  const width = img.shape[0];
+  const height = img.shape[1];
+
+  // use the shorter side as the size to which we will crop
+  const shorterSide = Math.min(img.shape[0], img.shape[1]);
+
+  // calculate beginning and ending crop points
+  const startingHeight = (height - shorterSide) / 2;
+  const startingWidth = (width - shorterSide) / 2;
+  const endingHeight = startingHeight + shorterSide;
+  const endingWidth = startingWidth + shorterSide;
+
+  // return image data cropped to those points
+  return img.slice([startingWidth, startingHeight, 0], [endingWidth, endingHeight, 3]);
+}
+  
 async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = ""; 
@@ -60,7 +79,8 @@ async function classifyImage() {
  tf.tidy(() => {
    
    
-   var img = document.getElementById("myImage");  
+   var img = document.getElementById("myImage"); 
+   img = cropImage(img);
    var example =tf.fromPixels(img);
    // If we set align_corners=false, we start seeing inconsistencies between different hardware
    // e.g. phones (pixel 2/3 and macbook)
