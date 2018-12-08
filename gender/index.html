@@ -1,7 +1,7 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 10//</p> </h1>
+  <h1><p style="color:purple">// Genderflow//</p> </h1>
 
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
@@ -80,7 +80,7 @@ async function classifyImage() {
    
    
    var img = document.getElementById("myImage"); 
-   img = cropImage(img);
+   //img = cropImage(img);
    var example =tf.fromPixels(img);
    // If we set align_corners=false, we start seeing inconsistencies between different hardware
    // e.g. phones (pixel 2/3 and macbook)
