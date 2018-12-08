@@ -1,7 +1,7 @@
 <head><script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 8//</p> </h1>
+  <h1><p style="color:purple">// Genderflow 9//</p> </h1>
 
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
@@ -68,7 +68,7 @@ async function classifyImage() {
    //example = tf.cast(example, 'float32')
    //example = tf.div(example, 255)
    
-   //example = example.toFloat().div(tf.scalar(255));
+   example = example.toFloat().div(tf.scalar(255));
    example = example.reshape([1, 150, 150, 3]); 
    example.print()
    document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
