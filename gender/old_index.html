@@ -1,0 +1,135 @@
+<head>
+  <link rel="stylesheet" href="croppie.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+  <script src="croppie.js"></script> 
+</head> 
+<body>
+  <h1><p style="color:purple">// Genderflow 4//</p> </h1>
+
+  
+  
+  
+  
+  <!-- ...... -->
+  Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
+  There is lots of room for improvement -- this is just first quick shot.
+  </p>
+  This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data...
+  
+  <h1><p style="color:purple"><< Select image</p> </h1>
+  Select an image with a face, ideally centered and frontal.<br>
+  System does not crop automatically -- classification works best when face fills most of the image.<br>
+  </p>
+
+  <input type="file" onchange="selectImage()"></p>  
+ 
+  <img id="myImage" src="woman.jpg" alt="an image to come here" width="150" height="150">
+
+  <h1><p style="color:purple">>> So then...</p> </h1>
+  <button onclick="classifyImage()">Click here to classify</button></p>
+  <div id="myResultLabel"></div>                                 
+  <div id="myResultConf"></div>
+  <div id="myResultPred"></div>   
+  </p>
+  <div id="myResultDetails"></div>   
+
+                    
+<script>
+
+function selectImage(){
+       var preview = document.querySelector('img'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  }
+  
+
+// normalize into some sort of confidence for given class
+function norm(v) {
+    if (v>0.5) {
+        return (v-0.5) / (1.0 - 0.5)
+    } else {
+        return 1 - ((v-0) / (0.5 - 0))
+    }
+}
+  
+// crop image to square
+// https://thekevinscott.com/image-classification-with-javascript/
+function cropImage(img) {
+  const width = img.shape[0];
+  const height = img.shape[1];
+
+  // use the shorter side as the size to which we will crop
+  const shorterSide = Math.min(img.shape[0], img.shape[1]);
+
+  // calculate beginning and ending crop points
+  const startingHeight = (height - shorterSide) / 2;
+  const startingWidth = (width - shorterSide) / 2;
+  const endingHeight = startingHeight + shorterSide;
+  const endingWidth = startingWidth + shorterSide;
+
+  // return image data cropped to those points
+  return img.slice([startingWidth, startingHeight, 0], [endingWidth, endingHeight, 3]);
+}
+  
+async function classifyImage() {
+ document.getElementById("myResultLabel").innerHTML = "thinking..."; 
+ document.getElementById("myResultConf").innerHTML = ""; 
+ document.getElementById("myResultPred").innerHTML = ""; 
+ var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')      
+ tf.tidy(() => {
+   
+   
+   var img = document.getElementById("myImage"); 
+   //img = cropImage(img);
+   var example =tf.fromPixels(img);
+   // If we set align_corners=false, we start seeing inconsistencies between different hardware
+   // e.g. phones (pixel 2/3 and macbook)
+   example = tf.image.resizeBilinear(example, [150, 150], align_corners=true);
+   //example = tf.cast(example, 'float32')
+   //example = tf.div(example, 255)
+   
+   example = example.toFloat().div(tf.scalar(255));
+   example = example.reshape([1, 150, 150, 3]); 
+   example.print()
+   document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
+   console.log(example)
+  
+   var pred = model.predict(example);
+ 
+   // decision
+   var conf = norm(pred.dataSync())
+   var label = 'x'
+   if (pred.dataSync() >= 0.59) {
+      label='MALE'
+      document.getElementById("myResultLabel").innerHTML = label.toString();
+      document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+     
+  } else if (pred.dataSync() <= 0.41) {
+      label='FEMALE'
+      document.getElementById("myResultLabel").innerHTML = label.toString();
+      document.getElementById("myResultConf").innerHTML = "confidence: " + parseFloat(conf).toFixed(2);
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+    
+  } else {
+      label='I have no idea...'
+      document.getElementById("myResultLabel").innerHTML = "class: " + label.toString();
+      document.getElementById("myResultConf").innerHTML = "";
+      document.getElementById("myResultPred").innerHTML = "[raw softmax:" + parseFloat(pred.dataSync()).toFixed(4) + "]";
+    
+  }
+ });
+ model.dispose();
+}
+  
+  
+</script>
+</body>
