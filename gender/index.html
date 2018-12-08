@@ -59,10 +59,11 @@ async function classifyImage() {
    
    var img = document.getElementById("myImage");  
    var example =tf.fromPixels(img);
-   example = tf.image.resizeBilinear(example, [150, 150]);
+   example = tf.image.resizeBilinear(example, [150, 150], align_corners=True);
    example = tf.cast(example, 'float32')
    example = tf.div(example, 255)
    example = example.reshape([1, 150, 150, 3]); 
+   example.print()
   
    var pred = model.predict(example);
  
