@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop 2//</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop 3//</p> </h1>
 
   
   
@@ -74,15 +74,19 @@ function norm(v) {
   
 async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
- document.getElementById("myResultConf").innerHTML = ""; 
+ document.getElementById("myResultConf").innerHTML = "loading image..."; 
  document.getElementById("myResultPred").innerHTML = ""; 
+ var croppedImagaData = await cropper.result('canvas')   
+ var img = new Image();
+ img.src = croppedImagaData;
+  
+ document.getElementById("myResultConf").innerHTML = "loading model..."; 
+
  var model = await tf.loadModel('faces_to_gender_v2.h5/model.json')      
+ 
+ document.getElementById("myResultConf").innerHTML = "classifying..."; 
+  
  tf.tidy(() => {
-   
-   
-   var croppedImagaData = cropper.result('canvas')   
-   var img = new Image();
-   img.src = croppedImagaData;
    
    // var img = document.getElementById("myImage"); 
    var example =tf.fromPixels(img);
