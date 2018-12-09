@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Canvas //</p> </h1>
+  <h1><p style="color:purple">// Genderflow 2 //</p> </h1>
 
   
   
@@ -22,7 +22,9 @@
   System does not crop automatically -- classification works best when face fills most of the image.<br>
   </p>
 
-  <input type="file" onchange="selectImage()"></p>
+  <!-- <input type="file" onchange="selectImage()"></p> -->
+  <input type="file" onchange="loadNewImage()"></p>
+
   <!-- <input type="url" id="myFile" onchange="selectAndCrop()"></p> -->
   
   <img id="myImage" src="woman.jpg" alt="an image to come here" width="150" height="150">
@@ -34,13 +36,9 @@
   <div id="myResultPred"></div>   
   </p>
   <div id="myResultDetails"></div>   
-
-  <canvas id="myCanvas" width="300" height="300"
-  style="border:1px solid #000000;">
-  </canvas>
                     
 <script>
-var el = document.getElementById('myCanvas')
+var el = document.getElementById('myImage')
 var cropper = new Croppie(el, {
     viewport: { width: 150, height: 150 },
     boundary: { width: 300, height: 300 },
@@ -49,6 +47,17 @@ var cropper = new Croppie(el, {
 });
   
 
+function loadNewImage() {
+  cropper.destroy()
+  var el = document.getElementById('myImage')
+  cropper = new Croppie(el, {
+      viewport: { width: 150, height: 150 },
+      boundary: { width: 300, height: 300 },
+      showZoomer: true,
+      enableOrientation: true
+  });  
+}
+  
 function selectAndCrop() {
   
   var sel_file = document.getElementById("myFile").files[0].name;
