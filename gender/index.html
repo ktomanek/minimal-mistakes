@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop 1//</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop //</p> </h1>
 
   
   
@@ -85,7 +85,7 @@ async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = "loading image..."; 
  document.getElementById("myResultPred").innerHTML = ""; 
- var  pedImagaData = await cropper.result('canvas')   
+ var croppedImagaData = await cropper.result('canvas')   
  var img = new Image();
  img.src = croppedImagaData;
   
