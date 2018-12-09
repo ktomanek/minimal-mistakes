@@ -9,8 +9,8 @@
   
   
   <!-- ...... -->
-  Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
-  There is lots of room for improvement -- this is just first quick shot.
+  This face gender classifier trained on top of VGG16 with the Adience face data set (~2.5k faces for each male and female faces).
+  It is at around 90% accuracy to "predict the gender" as male/female from a given image.
   </p>
   This model his highly biased and reveals unpleasant gender stereotypes -- as found in the training data. In fact, the 
   purpose of this tool is not the actual classification of faces by gender (because: why would one even care!) but rather 
@@ -37,17 +37,9 @@
   </p>
   
 
-
-<!--
-var el = document.getElementById('myImage')
-var cropper = new Croppie(el, {
-    viewport: { width: 150, height: 150 },
-    boundary: { width: 300, height: 300 },
-    showZoomer: true,
-    enableOrientation: true
-});
--->
 <script>
+document.getElementById("step2").disabled=true
+document.getElementById("step3").disabled=true
 var cropper;
   
 
@@ -65,7 +57,9 @@ function selectImage(){
            preview.src = "";
        }
        document.getElementById("step1").disabled=true
-    }
+       document.getElementById("step2").disabled=false
+       document.getElementById("step3").disabled=true
+  }
   
 function loadNewImage() {
   var el = document.getElementById('myImage')
@@ -76,7 +70,9 @@ function loadNewImage() {
       showZoomer: true,
       enableOrientation: true
   });  
+  document.getElementById("step1").disabled=true
   document.getElementById("step2").disabled=true
+  document.getElementById("step3").disabled=false
 }
   
 
@@ -96,7 +92,10 @@ function norm(v) {
 
   
 async function classifyImage() {
+ document.getElementById("step1").disabled=true
+ document.getElementById("step2").disabled=true
  document.getElementById("step3").disabled=true
+
  document.getElementById("myResultImage").innerHTML = ""; 
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = "loading image..."; 
@@ -153,7 +152,8 @@ async function classifyImage() {
  model.dispose();
   
  document.getElementById("step1").disabled=false
- document.getElementById("step2").disabled=false
+ document.getElementById("step2").disabled=true
+ document.getElementById("step3").disabled=true
 }
   
   
