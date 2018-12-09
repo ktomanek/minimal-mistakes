@@ -119,7 +119,7 @@ async function classifyImage() {
    example = example.toFloat().div(tf.scalar(255));
    example = example.reshape([1, 150, 150, 3]); 
    // example.print()
-   document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
+   // document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
    console.log(example)
   
    var pred = model.predict(example);
