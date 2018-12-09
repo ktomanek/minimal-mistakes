@@ -20,11 +20,11 @@
   </p>
 
   Step 1: <input type="file" onchange="selectImage()"></p>
-  <!-- Step 2: <button onclick="loadNewImage()">load new image</button></p> -->
+  Step 2: <button onclick="loadNewImage()">load new image</button></p>
 
-  <!-- <input type="url" id="myFile" onchange="selectAndCrop()"></p> -->
-  
-  <img id="myImage" src="" alt="" width="150" height="150">
+  <div id="myResultDetails">
+   <img id="myImage" src="" alt="" width="150" height="150">
+  </div>
 
   <h1><p style="color:purple">>> So then...</p> </h1>
   Step 3: <button onclick="classifyImage()">Click here to classify</button></p>
@@ -33,7 +33,7 @@
   <div id="myResultConf"></div>
   <div id="myResultPred"></div>   
   </p>
-  <div id="myResultDetails"></div>   
+  
 
 
 <!--
@@ -59,14 +59,7 @@ function loadNewImage() {
   });  
 }
   
-function selectAndCrop() {
-  
-  var sel_file = document.getElementById("myFile").files[0].name;
-  cropper.bind({
-    url: sel_file,
-    orientation: 1
-  });
-}
+
 
 function selectImage(){
        //cropper.destroy()
@@ -81,15 +74,7 @@ function selectImage(){
        } else {
            preview.src = "";
        }
-  
-      var el = document.getElementById('myImage')
-      cropper = new Croppie(el, {
-        viewport: { width: 150, height: 150 },
-        boundary: { width: 300, height: 300 },
-        showZoomer: true,
-        enableOrientation: true
-      });  
-  }
+    }
   
 
 // normalize into some sort of confidence for given class
