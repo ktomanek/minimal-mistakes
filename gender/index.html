@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop 7//</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop 1//</p> </h1>
 
   
   
@@ -48,7 +48,7 @@ var cropper = new Croppie(el, {
 
 function selectAndCrop() {
   
-  var sel_file = document.getElementById("myFile").files[0];
+  var sel_file = document.getElementById("myFile").files[0].name;
   cropper.bind({
     url: sel_file,
     orientation: 1
