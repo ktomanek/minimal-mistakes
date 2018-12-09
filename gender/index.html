@@ -12,10 +12,12 @@
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
   There is lots of room for improvement -- this is just first quick shot.
   </p>
-  This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data...
-  
+  This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data. In fact, the 
+  of this tool is not the actual classification of faces by gender (because: why would one even care!) but rather reveal
+  stereotypical ideas around what is typically female or male.
+  </p>
   Select an image with a face, ideally centered and frontal.<br>
-  System does not crop automatically -- classification works best when face fills most of the image.<br>
+  <!-- ...... -->
   </p>
 
   Step 1: <input id="step1" type="file" onchange="selectImage()"></p>
@@ -62,7 +64,7 @@ function selectImage(){
        } else {
            preview.src = "";
        }
-       document.getElementById("step1").disable=true
+       document.getElementById("step1").disabled=true
     }
   
 function loadNewImage() {
@@ -74,7 +76,7 @@ function loadNewImage() {
       showZoomer: true,
       enableOrientation: true
   });  
-  document.getElementById("step2").disable=true
+  document.getElementById("step2").disabled=true
 }
   
 
@@ -149,8 +151,8 @@ async function classifyImage() {
  });
  model.dispose();
   
- document.getElementById("step1").disable=false
- document.getElementById("step2").disable=false
+ document.getElementById("step1").disabled=false
+ document.getElementById("step2").disabled=false
 }
   
   
