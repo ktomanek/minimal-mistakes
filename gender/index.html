@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow //</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop //</p> </h1>
   
   
   <!-- ...... -->
@@ -52,6 +52,7 @@ var cropper;
 function loadNewImage() {
   var el = document.getElementById('myImage')
   cropper = new Croppie(el, {
+      enableExif: true,
       viewport: { width: 150, height: 150 },
       boundary: { width: 300, height: 300 },
       showZoomer: true,
