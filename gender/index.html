@@ -49,19 +49,6 @@ var cropper = new Croppie(el, {
 var cropper;
   
 
-function loadNewImage() {
-  var el = document.getElementById('myImage')
-  cropper = new Croppie(el, {
-      enableExif: true,
-      viewport: { width: 150, height: 150 },
-      boundary: { width: 300, height: 300 },
-      showZoomer: true,
-      enableOrientation: true
-  });  
-}
-  
-
-
 function selectImage(){
        //cropper.destroy()
        var preview = document.querySelector('img'); //selects the query named img
@@ -75,7 +62,24 @@ function selectImage(){
        } else {
            preview.src = "";
        }
+       document.getElementById("step1").disable=true
     }
+  
+function loadNewImage() {
+  var el = document.getElementById('myImage')
+  cropper = new Croppie(el, {
+      enableExif: true,
+      viewport: { width: 150, height: 150 },
+      boundary: { width: 300, height: 300 },
+      showZoomer: true,
+      enableOrientation: true
+  });  
+  document.getElementById("step2").disable=true
+}
+  
+
+
+
   
 
 // normalize into some sort of confidence for given class
@@ -144,6 +148,9 @@ async function classifyImage() {
   }
  });
  model.dispose();
+  
+ document.getElementById("step1").disable=false
+ document.getElementById("step2").disable=false
 }
   
   
