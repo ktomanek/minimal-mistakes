@@ -13,7 +13,7 @@
   There is lots of room for improvement -- this is just first quick shot.
   </p>
   This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data. In fact, the 
-  of this tool is not the actual classification of faces by gender (because: why would one even care!) but rather reveal
+  purpose of this tool is not the actual classification of faces by gender (because: why would one even care!) but rather reveal
   stereotypical ideas around what is typically female or male.
   </p>
   Select an image with a face, ideally centered and frontal.<br>
@@ -96,6 +96,7 @@ function norm(v) {
 
   
 async function classifyImage() {
+ document.getElementById("step3").disabled=true
  document.getElementById("myResultImage").innerHTML = ""; 
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = "loading image..."; 
