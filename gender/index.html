@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 2 //</p> </h1>
+  <h1><p style="color:purple">// Genderflow 3 //</p> </h1>
 
   
   
@@ -22,8 +22,8 @@
   System does not crop automatically -- classification works best when face fills most of the image.<br>
   </p>
 
-  <!-- <input type="file" onchange="selectImage()"></p> -->
-  <input type="file" onchange="loadNewImage()"></p>
+  <input type="file" onchange="selectImage()"></p>
+  <button onclick="loadNewImage()">load new image</button>
 
   <!-- <input type="url" id="myFile" onchange="selectAndCrop()"></p> -->
   
@@ -48,7 +48,6 @@ var cropper = new Croppie(el, {
   
 
 function loadNewImage() {
-  cropper.destroy()
   var el = document.getElementById('myImage')
   cropper = new Croppie(el, {
       viewport: { width: 150, height: 150 },
@@ -68,6 +67,7 @@ function selectAndCrop() {
 }
 
 function selectImage(){
+       cropper.destroy()
        var preview = document.querySelector('img'); //selects the query named img
        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
        var reader  = new FileReader();
