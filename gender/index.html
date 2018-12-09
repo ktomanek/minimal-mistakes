@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop 6//</p> </h1>
+  <h1><p style="color:purple">// Genderflow Crop 7//</p> </h1>
 
   
   
@@ -25,7 +25,7 @@
   <!-- <input type="file" onchange="selectImage()"></p>  -->
   <input type="file" id="myFile" onchange="selectAndCrop()"></p>
   
-  <img id="myImage" src="" alt="an image to come here" width="150" height="150">
+  <img id="myImage" src="woman.jpg" alt="an image to come here" width="150" height="150">
 
   <h1><p style="color:purple">>> So then...</p> </h1>
   <button onclick="classifyImage()">Click here to classify</button></p>
@@ -47,27 +47,14 @@ var cropper = new Croppie(el, {
   
 
 function selectAndCrop() {
-  var sel_file = document.getElementById("myFile");
+  
+  var sel_file = document.getElementById("myFile").files[0];
   cropper.bind({
     url: sel_file,
     orientation: 1
   });
 }
 
-function crop(){
-       var preview = document.querySelector('img'); //selects the query named img
-       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-       var reader  = new FileReader();
-      
-       reader.onloadend = function () {
-           preview.src = reader.result;
-       }
-       if (file) {
-           reader.readAsDataURL(file); //reads the data as a URL
-       } else {
-           preview.src = "";
-       }
-  }  
 function selectImage(){
        var preview = document.querySelector('img'); //selects the query named img
        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
@@ -98,7 +85,7 @@ async function classifyImage() {
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = "loading image..."; 
  document.getElementById("myResultPred").innerHTML = ""; 
- var croppedImagaData = await cropper.result('canvas')   
+ var  pedImagaData = await cropper.result('canvas')   
  var img = new Image();
  img.src = croppedImagaData;
   
