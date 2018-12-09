@@ -5,7 +5,9 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 5 //</p> </h1>
+  <h1><p style="color:purple">// Genderflow //</p> </h1>
+  
+  <h2><p style="color:purple">.. reload .. </p> </h2>
 
   
   
@@ -108,7 +110,7 @@ async function classifyImage() {
  var img = new Image();
  img.src = croppedImagaData;
  cropper.destroy()
- document.getElementById('myResultImage').appendChild(img)
+ document.getElementById('myImage').appendChild(img)
   
  document.getElementById("myResultConf").innerHTML = "loading model..."; 
 
