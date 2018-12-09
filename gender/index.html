@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow 3 //</p> </h1>
+  <h1><p style="color:purple">// Genderflow 4 //</p> </h1>
 
   
   
@@ -31,6 +31,7 @@
 
   <h1><p style="color:purple">>> So then...</p> </h1>
   <button onclick="classifyImage()">Click here to classify</button></p>
+  <div id="myResultImage"></div>                                 
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
   <div id="myResultPred"></div>   
@@ -67,7 +68,7 @@ function selectAndCrop() {
 }
 
 function selectImage(){
-       cropper.destroy()
+       //cropper.destroy()
        var preview = document.querySelector('img'); //selects the query named img
        var file    = document.querySelector('input[type=file]').files[0]; //sames as here
        var reader  = new FileReader();
@@ -94,12 +95,16 @@ function norm(v) {
 
   
 async function classifyImage() {
+ document.getElementById("myResultImage").innerHTML = ""; 
  document.getElementById("myResultLabel").innerHTML = "thinking..."; 
  document.getElementById("myResultConf").innerHTML = "loading image..."; 
  document.getElementById("myResultPred").innerHTML = ""; 
+ 
  var croppedImagaData = await cropper.result('canvas')   
  var img = new Image();
  img.src = croppedImagaData;
+ cropper.destroy()
+ document.getElementById('myResultImage').appendChild(img)
   
  document.getElementById("myResultConf").innerHTML = "loading model..."; 
 
