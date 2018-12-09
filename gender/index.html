@@ -7,11 +7,6 @@
 <body>
   <h1><p style="color:purple">// Genderflow //</p> </h1>
   
-  <h2><p style="color:purple">.. reload .. </p> </h2>
-
-  
-  
-  
   
   <!-- ...... -->
   Face classifier trained on top of VGG16 with Adience face data set (~2.5k faces for each male and female faces).
@@ -29,7 +24,7 @@
 
   <!-- <input type="url" id="myFile" onchange="selectAndCrop()"></p> -->
   
-  <img id="myImage" src="woman.jpg" alt="an image to come here" width="150" height="150">
+  <img id="myImage" src="" alt="an image to come here" width="150" height="150">
 
   <h1><p style="color:purple">>> So then...</p> </h1>
   <button onclick="classifyImage()">Click here to classify</button></p>
@@ -125,7 +120,7 @@ async function classifyImage() {
    example = tf.image.resizeBilinear(example, [150, 150], align_corners=true);   
    example = example.toFloat().div(tf.scalar(255));
    example = example.reshape([1, 150, 150, 3]); 
-   example.print()
+   // example.print()
    document.getElementById("myResultDetails").innerHTML = "[image tensor:" + example + "]";
    console.log(example)
   
