@@ -14,19 +14,19 @@
   </p>
   This model his highly biased and has reveals unpleasant gender stereotypes, as found in the training data...
   
-  <h1><p style="color:purple"><< Select image</p> </h1>
   Select an image with a face, ideally centered and frontal.<br>
   System does not crop automatically -- classification works best when face fills most of the image.<br>
   </p>
 
-  Step 1: <input type="file" onchange="selectImage()"></p>
-  Step 2: <button onclick="loadNewImage()">load new image</button></p>
-
+  Step 1: <input id="step1" type="file" onchange="selectImage()"></p>
+  Step 2: <button id="step2" onclick="loadNewImage()">load new image</button></p>
+  Step 3: <button id="step3" onclick="classifyImage()">Click here to classify</button></p>
+  
   <img id="myImage" src="" alt="" width="150" height="150">
   
 
-  <h1><p style="color:purple">>> So then...</p> </h1>
-  Step 3: <button onclick="classifyImage()">Click here to classify</button></p>
+  <h1><p style="color:purple">>> Result</p> </h1>
+  
   <div id="myResultImage"></div>                                 
   <div id="myResultLabel"></div>                                 
   <div id="myResultConf"></div>
