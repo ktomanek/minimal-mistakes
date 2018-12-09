@@ -5,7 +5,7 @@
   <script src="croppie.js"></script> 
 </head> 
 <body>
-  <h1><p style="color:purple">// Genderflow Crop //</p> </h1>
+  <h1><p style="color:purple">// Genderflow Canvas //</p> </h1>
 
   
   
@@ -35,9 +35,12 @@
   </p>
   <div id="myResultDetails"></div>   
 
+  <canvas id="myCanvas" width="300" height="300"
+  style="border:1px solid #000000;">
+  </canvas>
                     
 <script>
-var el = document.getElementById('myImage')
+var el = document.getElementById('myCanvas')
 var cropper = new Croppie(el, {
     viewport: { width: 150, height: 150 },
     boundary: { width: 300, height: 300 },
